@@ -17,7 +17,7 @@ RAW_TEAS = [
         "name": "Earl of Grey",
         "kind": "black",
         "countries": ["China", "India"],
-        "flflavors": ["citrusy", "smooth", "aromatic"],
+        "flavors": ["citrusy", "smooth", "aromatic"],
         "benefits": [
             "antioxidants",
             "relaxation",

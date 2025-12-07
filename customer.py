@@ -207,3 +207,17 @@ class Customer:
     def top_caffeine_levels(self, n: int = 5) -> List[Tuple[str, int]]:
         """Return the top-n caffeine levels by preference score."""
         return self.caffeine_preferences.most_common(n)
+
+    def recommend_teas(self, teas: list[Tea], top_n: int = 5) -> list[tuple[Tea, int]]:
+        scored = []
+        for tea in teas:
+            score = 0
+            score += self.kind_preferences.get(tea.kind, 0)
+            score += self.caffeine_preferences.get(tea.caffeine, 0)
+            score += sum(self.country_preferences.get(c, 0) for c in tea.countries)
+            score += sum(self.flavor_preferences.get(f, 0) for f in tea.flavors)
+            score += sum(self.benefit_preferences.get(b, 0) for b in tea.benefits)
+            scored.append((tea, score))
+        scored.sort(key=lambda x: x[1], reverse=True)
+        return scored[:top_n]
+
